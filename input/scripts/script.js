@@ -30,7 +30,7 @@ LTX.main = (function(){
 
     var _initEvents = function _initEvents(){
         Ps.initialize(document.getElementById('site'));
-        
+
         var random = Math.floor(Math.random() * 3) + 1;
         _$welcome_bg.css({
             'background-image': 'url("images/home/me-'+random+'.jpg")'
@@ -52,11 +52,11 @@ LTX.main = (function(){
             })
             .done(function(data) {
                 console.log(data);
-                    setTimeout(function(){
+                    //setTimeout(function(){
                         _$work_here.html(data);
                         _$work_here.addClass('active');
                         _$loading_work.addClass('byebye');
-                    },2000);
+                    //},2000);
 
             })
             .fail(function() {
