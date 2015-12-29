@@ -28,11 +28,153 @@
 </head>
 <body>
 
+<div id="noGeo">
+    <p>To live the full experience please allow browser position</p>
+</div>
+
+<div class="site">
+    <section class="home">
+        <div class="ltx">
+            <div class="relative h-100">
+                <div class="vertical-align">
+                    <img src="images/provisional_logo.png" alt="LTX"/>
+                    <div class="title">
+                        <span>WEB</span> AND <strong>MOBILE</strong> DEVELOVEP
+                    </div>
+                    <div class="sub-title">
+                        Also mom says i'm a good kid
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="legend">
+            <p>This website was designed and developed by me inspiraded on <a href="https://www.youtube.com/watch?v=X_Gx2-yeNlk" target="_blank">Jamie XX</a></p>
+        </div>
+        <div class="welcome_bg"></div>
+    </section>
+    <section class="map">
+        <div class="iam">
+            <div class="wrapper">
+                <div class="vertical-align">
+                    <div class="title">
+                        <p>I’m from México City</p>
+                    </div>
+                    <div class="sub-title">
+                        <p><span id="here">365Km</span> near you</p>
+                    </div>
+                    <div class="intro">
+                        <p>
+                            My name is <span>Axel</span>, es un hecho establecido hace demasiado
+                            un lector se distraerá con el contenido del texto de un
+                            sitio mientras que mira su diseño. El punto de usar
+                        </p>
+                        <p>
+                            Lorem Ipsum es que tiene una distribución más o menos
+                            normal de las letras, al contrario de usar textos como por
+                            ejemplo "Contenido aquí, contenido aquí".
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="blueMap"></div>
+    </section>
+    <section class="skills section-content active">
+        <div class="vertical-align">
+            <div class="section-title">
+                <div class="relative">
+                    <p>Skills</p>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="list-skills">
+                    <div class="block">
+                        <div class="nave">Visual</div>
+                        <div class="level">
+                            <div class="line"></div>
+                        </div>
+                        <div class="string">['Motion Graphics','3D modeling','Animation']</div>
+                    </div>
+                    <div class="block">
+                        <div class="nave">Develop</div>
+                        <div class="level">
+                            <div class="line"></div>
+                        </div>
+                        <div class="string">
+                            <p>Code [‘Javascript’, ‘PHP’, ‘AngularJS’, ‘Ionic’]</p>
+                            <p>APIs ['Google Maps', 'Facebook', 'Twitter', 'Instagram']</p>
+                            <p>Extra [‘Git / Gitlab’, ’Grunt’, ‘Gulp’, ‘Node.js’ ]</p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="nave">Videogames</div>
+                        <div class="level">
+                            <div class="line"></div>
+                        </div>
+                        <div class="string">[ ‘Magical Drop III’, ’UMVC3’, ‘Guitar Hero 3’, ‘Pump It Up’ ]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="work section-content">
+        <div class="vertical-align">
+            <div class="section-title">
+                <div class="relative">
+                    <p>My Work</p>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="portfolio">
+                    <ul>
+                        <li>
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/hablemos.jpg') ">
+                                <div class="sub">
+                                    <p class="title">Hablemos de México <span>(live)</span></p>
+                                    <p class="sub-title">Website</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/leveame.jpg') ">
+                                <div class="sub">
+                                    <p class="title">Leveame</p>
+                                    <p class="sub-title">Community</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/tercer_cuarto.jpg') ">
+                                <div class="sub">
+                                    <p class="title">Tercer Cuarto</p>
+                                    <p class="sub-title">App</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/ummi-and-bala.jpg') ">
+                                <div class="sub">
+                                    <p class="title">Ummi and Bala</p>
+                                    <p class="sub-title">E-commerce</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 <script type="text/javascript" src="scripts/libs/jquery-1.11.3.min.js"></script>
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMLQ2P-myONLsx2I6BYAMrRmJpgbviHKU&callback=initMap"></script>-->
+<script async defer src="https://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript" src="scripts/script.js"></script>
 <script>
     $(document).ready(function(){ LTX.main.init(); });
+    $(window).load(function(){ LTX.main.load(); });
 </script>
 </body>
 </html>

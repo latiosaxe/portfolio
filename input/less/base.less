@@ -361,6 +361,9 @@ cite    { font-style: normal; }
 .relative{
     position: relative;
 }
+.h-100{
+    height: 100%;
+}
 
 
 .video-container {
@@ -390,11 +393,9 @@ cite    { font-style: normal; }
 }
 
 .vertical-align{
-    display: table;
-    .vertical-block{
-        display: table-cell;
-        vertical-align: middle;
-    }
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 
