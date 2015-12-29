@@ -8,22 +8,8 @@
     <meta name="Description" content="Web & Mobile developer"/>
     <meta name="Distribution" content="global"/>
     <meta name="Robots" content="all"/>
-    <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="images/favicons/manifest.json">
-    <link rel="shortcut icon" href="images/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet"  href="css/perfect-scrollbar.min.css">
     <link rel="stylesheet"  href="css/style.css?version=1.02">
 </head>
 <body>
@@ -32,7 +18,7 @@
     <p>To live the full experience please allow browser position</p>
 </div>
 
-<div class="site">
+<div class="site" id="site">
     <section class="home">
         <div class="ltx">
             <div class="relative h-100">
@@ -59,8 +45,8 @@
                     <div class="title">
                         <p>I’m from México City</p>
                     </div>
-                    <div class="sub-title">
-                        <p><span id="here">365Km</span> near you</p>
+                    <div class="sub-title" id="noPosition" style="display: none;">
+                        <p><span id="hereKM">365Km</span> near you</p>
                     </div>
                     <div class="intro">
                         <p>
@@ -130,7 +116,7 @@
                 <div class="portfolio">
                     <ul>
                         <li>
-                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/hablemos.jpg') ">
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/hablemos.jpg')" data-url="hablemos.html">
                                 <div class="sub">
                                     <p class="title">Hablemos de México <span>(live)</span></p>
                                     <p class="sub-title">Website</p>
@@ -138,7 +124,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/leveame.jpg') ">
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/leveame.jpg')" data-url="leveame.html">
                                 <div class="sub">
                                     <p class="title">Leveame</p>
                                     <p class="sub-title">Community</p>
@@ -146,7 +132,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/tercer_cuarto.jpg') ">
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/tercer_cuarto.jpg')" data-url="tercer_cuarto.html">
                                 <div class="sub">
                                     <p class="title">Tercer Cuarto</p>
                                     <p class="sub-title">App</p>
@@ -154,7 +140,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/ummi-and-bala.jpg') ">
+                            <a href="#" class="bringWork" style="background-image: url('images/portfolio/ummi-and-bala.jpg')" data-url="ummi.html">
                                 <div class="sub">
                                     <p class="title">Ummi and Bala</p>
                                     <p class="sub-title">E-commerce</p>
@@ -166,12 +152,50 @@
             </div>
         </div>
     </section>
+    <section class="contact">
+        <div class="relative h-100">
+            <div class="vertical-align">
+                <ul class="contact-social">
+                    <li>
+                        <a href="https://twitter.com/latiosaxe" target="_blank">twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/latiosaxe" target="_blank">facebook</a>
+                    </li>
+                    <li>
+                        <a href="https://mx.linkedin.com/in/latiosaxe" target="_blank">linkedIn</a>
+                    </li>
+                    <li>
+                        <a href="https://medium.com/@latiosaxe" target="_blank">medium</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="fancy_work" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
+    <div class="close" id="closeFancy">X</div>
+    <div class="loading" id="loading-work">
+        <p>Please wait, i'm searching on my desk ;)</p>
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+    <div class="scroll-helper">
+        <div class="work-here" id="work-here">
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="scripts/libs/jquery-1.11.3.min.js"></script>
 <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMLQ2P-myONLsx2I6BYAMrRmJpgbviHKU&callback=initMap"></script>-->
 <script async defer src="https://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript" src="scripts/script.js"></script>
+<script type="text/javascript" src="scripts/libs/perfect-scrollbar.min.js"></script>
 <script>
     $(document).ready(function(){ LTX.main.init(); });
     $(window).load(function(){ LTX.main.load(); });

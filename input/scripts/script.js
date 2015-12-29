@@ -2,19 +2,73 @@ var LTX = {};
 
 LTX.main = (function(){
     var _coords = [],
-        _mexicoCoords = [19.3887369, -99.1086001],
-        _windowPosition,
+        _mexicoCoords = [19.3887369, -98.9586001],
+        _$welcome_bg,
         _$noGeo,
-        _$bringWork;
+        _$bringWork,
+        _$fancy_work,
+        _$work_here,
+        _$loading_work,
+        _$closeFancy,
+
+        _$noPosition,
+        _$hereKM;
 
 
     var _initVars = function _initVars(){
+        _$welcome_bg = $(".welcome_bg");
         _$noGeo = $("#noGeo");
         _$bringWork = $(".bringWork");
+        _$fancy_work = $(".fancy_work");
+        _$work_here = $("#work-here");
+        _$loading_work = $("#loading-work");
+        _$closeFancy = $("#closeFancy");
+
+        _$noPosition = $("#noPosition");
+        _$hereKM = $("#hereKM");
     };
 
     var _initEvents = function _initEvents(){
+        Ps.initialize(document.getElementById('site'));
+        
+        var random = Math.floor(Math.random() * 3) + 1;
+        _$welcome_bg.css({
+            'background-image': 'url("images/home/me-'+random+'.jpg")'
+        });
 
+        _$bringWork.click(function(event){
+            event.preventDefault();
+            var _this = $(this),
+                _url = _this.attr('data-url');
+                _$work_here.html('');
+
+            $.ajax({
+                type       : "GET",
+                dataType   : "html",
+                url        : "work/"+_url,
+                beforeSend : function() {
+                    _$fancy_work.addClass('active');
+                }
+            })
+            .done(function(data) {
+                console.log(data);
+                    setTimeout(function(){
+                        _$work_here.html(data);
+                        _$work_here.addClass('active');
+                        _$loading_work.addClass('byebye');
+                    },2000);
+
+            })
+            .fail(function() {
+                console.log("Error");
+            });
+        });
+
+        _$closeFancy.click(function(){
+            _$fancy_work.removeClass('active');
+            _$work_here.removeClass('active');
+            _$loading_work.removeClass('byebye');
+        });
     };
 
     var _windowListeners = function _windowListeners(){
@@ -32,16 +86,15 @@ LTX.main = (function(){
 
     var _geoposition = function _geoposition(){
         navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("Allow");
-            console.log(position);
             _coords.push(position.coords.latitude);
             _coords.push(position.coords.longitude);
             console.log(_coords);
-            _coords = [34.6783987,135.4775975];
+            //_coords = [34.6783987,135.4775975];
 
             _calculateDistance(_mexicoCoords[0], _mexicoCoords[1], _coords[0], _coords[1]);
+            _$noGeo.hide();
         }, function() {
-            console.log("Nop");
+            _$noPosition.hide();
         });
     };
 
@@ -86,12 +139,12 @@ LTX.main = (function(){
         console.log(d);
 
         if(d<=30){
-
+            _$noPosition.text('Just like you');
         }else{
-
+            _$hereKM.text(parseInt(d)+'KM');
         }
 
-        return d;
+        _$noPosition.show();
     };
 
     var _deg2rad = function _deg2rad(deg) {
@@ -110,4 +163,39 @@ LTX.main = (function(){
 
     }
 })();
+
+
+    var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+    function preventDefault(e) {
+        e = e || window.event;
+        if (e.preventDefault)
+            e.preventDefault();
+        e.returnValue = false;
+    }
+
+    function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+        }
+    }
+
+    function disableScroll() {
+        if (window.addEventListener) // older FF
+            window.addEventListener('DOMMouseScroll', preventDefault, false);
+        window.onwheel = preventDefault; // modern standard
+        window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+        window.ontouchmove  = preventDefault; // mobile
+        document.onkeydown  = preventDefaultForScrollKeys;
+    }
+
+    function enableScroll() {
+        if (window.removeEventListener)
+            window.removeEventListener('DOMMouseScroll', preventDefault, false);
+        window.onmousewheel = document.onmousewheel = null;
+        window.onwheel = null;
+        window.ontouchmove = null;
+        document.onkeydown = null;
+    }
 
