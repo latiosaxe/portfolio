@@ -1,7 +1,11 @@
 var LTX = {};
 
 LTX.main = (function(){
-    var _coords = [],
+    var
+        _$window,
+        _$body,
+
+        _coords = [],
         _mexicoCoords = [19.3887369, -98.9586001],
         _$welcome_bg,
         _$noGeo,
@@ -16,6 +20,9 @@ LTX.main = (function(){
 
 
     var _initVars = function _initVars(){
+        _$window = $(window);
+        _$body = $('body');
+
         _$welcome_bg = $(".welcome_bg");
         _$noGeo = $("#noGeo");
         _$bringWork = $(".bringWork");
@@ -29,9 +36,12 @@ LTX.main = (function(){
     };
 
     var _initEvents = function _initEvents(){
-        Ps.initialize(document.getElementById('site'));
+        if(_$window.width() > 580){
+            Ps.initialize(document.getElementById('site'));
+        }
 
-        var random = Math.floor(Math.random() * 3) + 1;
+
+        var random = Math.floor(Math.random() * 2) + 1;
         _$welcome_bg.css({
             'background-image': 'url("images/home/me-'+random+'.jpg")'
         });
@@ -56,6 +66,7 @@ LTX.main = (function(){
                         _$work_here.html(data);
                         _$work_here.addClass('active');
                         _$loading_work.addClass('byebye');
+                        _$body.addClass('dontMove');
                     //},2000);
 
             })
@@ -65,6 +76,7 @@ LTX.main = (function(){
         });
 
         _$closeFancy.click(function(){
+            _$body.removeClass('dontMove');
             _$fancy_work.removeClass('active');
             _$work_here.removeClass('active');
             _$loading_work.removeClass('byebye');
@@ -92,7 +104,7 @@ LTX.main = (function(){
             //_coords = [34.6783987,135.4775975];
 
             _calculateDistance(_mexicoCoords[0], _mexicoCoords[1], _coords[0], _coords[1]);
-            _$noGeo.hide();
+            _$noGeo.addClass('byebye');
         }, function() {
             _$noPosition.hide();
         });
@@ -164,38 +176,38 @@ LTX.main = (function(){
     }
 })();
 
-
-    var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
-    function preventDefault(e) {
-        e = e || window.event;
-        if (e.preventDefault)
-            e.preventDefault();
-        e.returnValue = false;
-    }
-
-    function preventDefaultForScrollKeys(e) {
-        if (keys[e.keyCode]) {
-            preventDefault(e);
-            return false;
-        }
-    }
-
-    function disableScroll() {
-        if (window.addEventListener) // older FF
-            window.addEventListener('DOMMouseScroll', preventDefault, false);
-        window.onwheel = preventDefault; // modern standard
-        window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-        window.ontouchmove  = preventDefault; // mobile
-        document.onkeydown  = preventDefaultForScrollKeys;
-    }
-
-    function enableScroll() {
-        if (window.removeEventListener)
-            window.removeEventListener('DOMMouseScroll', preventDefault, false);
-        window.onmousewheel = document.onmousewheel = null;
-        window.onwheel = null;
-        window.ontouchmove = null;
-        document.onkeydown = null;
-    }
+    //
+    //var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+    //
+    //function preventDefault(e) {
+    //    e = e || window.event;
+    //    if (e.preventDefault)
+    //        e.preventDefault();
+    //    e.returnValue = false;
+    //}
+    //
+    //function preventDefaultForScrollKeys(e) {
+    //    if (keys[e.keyCode]) {
+    //        preventDefault(e);
+    //        return false;
+    //    }
+    //}
+    //
+    //function disableScroll() {
+    //    if (window.addEventListener) // older FF
+    //        window.addEventListener('DOMMouseScroll', preventDefault, false);
+    //    window.onwheel = preventDefault; // modern standard
+    //    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    //    window.ontouchmove  = preventDefault; // mobile
+    //    document.onkeydown  = preventDefaultForScrollKeys;
+    //}
+    //
+    //function enableScroll() {
+    //    if (window.removeEventListener)
+    //        window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    //    window.onmousewheel = document.onmousewheel = null;
+    //    window.onwheel = null;
+    //    window.ontouchmove = null;
+    //    document.onkeydown = null;
+    //}
 
